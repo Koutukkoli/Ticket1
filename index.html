@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: white;
+            padding: 20px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Generate Bus Ticket</h2>
+        <form id="ticketForm">
+            <label>Route Number:</label>
+            <input type="text" id="routeNumber" required>
+
+            <label>Starting Point:</label>
+            <select id="startingPoint" required>
+                <option value="">Select Starting Point</option>
+                <option value="Shivaji Chowk Hinjawadi Dange Chowk Road">Shivaji Chowk Hinjawadi Dange Chowk Road</option>
+                <option value="Dange Chowk">Dange Chowk</option>
+                <option value="Laxman Nagar">Laxman Nagar</option>
+            </select>
+
+            <label>Destination:</label>
+            <select id="destination" required>
+                <option value="">Select Destination</option>
+                <option value="Shivaji Chowk Hinjawadi Dange Chowk Road">Shivaji Chowk Hinjawadi Dange Chowk Road</option>
+                <option value="Dange Chowk">Dange Chowk</option>
+                <option value="Laxman Nagar">Laxman Nagar</option>
+            </select>
+
+            <label>Fare (₹):</label>
+            <input type="number" id="fare" required>
+
+            <label>Ticket Count (Alphanumeric):</label>
+            <input type="text" id="ticketCount" required>
+
+            <label>Booking Date & Time:</label>
+            <input type="datetime-local" id="bookingTime" required>
+
+            <label>Validity Date & Time:</label>
+            <input type="datetime-local" id="validityTime" required>
+
+            <button type="submit">Generate Ticket</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('ticketForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const route = document.getElementById('routeNumber').value;
+            const startingPoint = document.getElementById('startingPoint').value;
+            const destination = document.getElementById('destination').value;
+            const fare = document.getElementById('fare').value;
+            const ticketCount = document.getElementById('ticketCount').value;
+            const bookingTime = document.getElementById('bookingTime').value;
+            const validityTime = document.getElementById('validityTime').value;
+
+            // Store data in localStorage
+            localStorage.setItem("routeNumber", route);
+            localStorage.setItem("startingPoint", startingPoint);
+            localStorage.setItem("destination", destination);
+            localStorage.setItem("fare", fare);
+            localStorage.setItem("ticketCount", ticketCount);
+            localStorage.setItem("bookingTime",bookingTime);
+            localStorage.setItem("validityTime", validityTime);
+
+            // Redirect to ticket page
+            window.location.href = "ticket.html";
+        });
+    </script>
+
+</body>
+</html>
